@@ -1,0 +1,21 @@
+{
+    "name": "meteor-elm-example",
+    "private": true,
+    "scripts": {
+        "start": "meteor run",
+        "deploy": "sh ./private/deploy.sh",
+        "watchelm": "sh ./private/watchelm.sh"
+    },
+    "dependencies": {
+        "@babel/runtime": "^7.3.4",
+        "meteor-node-stubs": "^0.4.1",
+        "ramda": "^0.26.1",
+        "yup": "^0.27.0"
+    },
+    "meteor": {
+        "mainModule": {
+            "client": "startup/client/main.js",
+            "server": "startup/server/main.js"
+        }
+    }
+}
