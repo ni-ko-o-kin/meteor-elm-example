@@ -125,8 +125,8 @@ port increaseCount : String -> Cmd msg
 -----------
 
 
-viewItem : Int -> Item -> Element Msg
-viewItem maxCount { count, id } =
+viewItem : Item -> Element Msg
+viewItem { count, id } =
     let
         asText =
             count
@@ -156,20 +156,13 @@ viewItem maxCount { count, id } =
 
 viewItems : List Item -> Element Msg
 viewItems items =
-    let
-        max =
-            items
-                |> List.map .count
-                |> List.maximum
-                |> Maybe.withDefault 0
-    in
     column
         [ centerY
         , centerX
         , width (fill |> maximum 300)
         , height fill
         ]
-        [ wrappedRow [] (List.map (viewItem max) items) ]
+        [ wrappedRow [] (List.map viewItem items) ]
 
 
 view : Model -> Html Msg
