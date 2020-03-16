@@ -1,4 +1,4 @@
-cd elm-client
+cd elm-client || exit
 
 elm make --debug src/Main.elm --output=../packages/elm/elm-main.js
 
