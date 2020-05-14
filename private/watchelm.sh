@@ -1,12 +1,29 @@
-cd elm-client || exit
+#!/usr/bin/env bash
 
-elm make --debug src/Main.elm --output=../packages/elm/elm-main.js
+START_PWD=$(pwd)
+ELM_DIR="elm-client"
 
-while inotifywait -e close_write -r src
+cd "$ELM_DIR" || exit
+
+FILE_NAMES=(
+    Main
+)
+
+FILES=()
+for file in "${FILE_NAMES[@]}"; do
+    FILES+=("src/${file}.elm")
+done
+
+function elmMake {
+    elm make --debug "${FILES[@]}" --output="$START_PWD/packages/elm/elm-main.js"
+}
+
+clear
+elmMake
+
+while inotifywait -e close_write "${FILES[@]}" elm.json
 do
     clear
     sleep 0.2
-    echo "\n"
-    elm make --debug src/Main.elm --output=../packages/elm/elm-main.js
-    echo "\n"
+    elmMake
 done
