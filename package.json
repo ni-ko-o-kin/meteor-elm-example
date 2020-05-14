@@ -17,5 +17,8 @@
       "client": "startup/client/main.js",
       "server": "startup/server/main.js"
     }
+  },
+  "devDependencies": {
+    "elm-json": "^0.2.6"
   }
 }
